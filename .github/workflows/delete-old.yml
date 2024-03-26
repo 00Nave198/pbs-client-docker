@@ -1,0 +1,16 @@
+on:
+  schedule:
+    - cron: '0 4 * * 6'
+
+jobs:
+  house-keeping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Keep the last 3 untagged versions
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: 'pbs-client-docker'
+          package-type: 'container'
+          min-versions-to-keep: 3
+          num-old-versions-to-delete: 100
+          token: ${{ secrets.GITHUB_TOKEN }}
