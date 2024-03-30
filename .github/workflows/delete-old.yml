@@ -9,11 +9,19 @@ jobs:
   house-keeping:
     runs-on: ubuntu-latest
     steps:
-      - name: Keep the last 3 untagged versions
+      - name: Keep the last 10 untagged versions of base
         uses: actions/delete-package-versions@v5
         with:
           package-name: 'pbs-client-docker'
           package-type: 'container'
-          min-versions-to-keep: 3
+          min-versions-to-keep: 10
+          delete-only-untagged-versions: "true"
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Keep the last 10 untagged versions of cron
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: 'pbs-client-docker-cron'
+          package-type: 'container'
+          min-versions-to-keep: 10
           delete-only-untagged-versions: "true"
           token: ${{ secrets.GITHUB_TOKEN }}
