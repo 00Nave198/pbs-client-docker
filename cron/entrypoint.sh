@@ -3,6 +3,11 @@
 # Cron will read the env from here
 env >> /etc/environment
 
+if [ -x /usr/local/bin/custom.sh ]; then
+    # Run some custom, user mounted code
+    /usr/local/bin/custom.sh
+fi
+
 # Enable provided cronfiles 
 if [ ! -z ${CRON_LIST+x} ]; then
     IFS=', ' read -r -a CRON_ARRAY <<< "${CRON_LIST}"
