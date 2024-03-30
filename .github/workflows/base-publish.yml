@@ -114,7 +114,7 @@ jobs:
             latest=true
 
       - name: Build and push cron Docker image
-        id: build-and-push
+        id: build-and-push-cron
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           context: cron
